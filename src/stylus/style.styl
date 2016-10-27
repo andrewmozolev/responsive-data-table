@@ -1,0 +1,324 @@
+/* ================================
+=            Variable             =
+================================ */
+
+// Disappear order
+$ghost-1 = 6
+$ghost-2 = 5
+$ghost-3 = 4
+$ghost-4 = 7
+$ghost-5 = 8
+$ghost-6 = 9
+
+$offset = 30px
+
+// Media Queries
+$xs  =  '(max-width 768px)'
+$sm  =  '(min-width 768px)'
+$md  =  '(min-width 992px)'
+$lg  =  '(min-width 1200px)'
+
+
+// Colors
+$bg = #fff
+$c-gray = #e0e0e0
+$c-gray--lighten = #d2d6d9
+$c-gray--light = #f1f1f1
+$c-gray--dark = #313131
+$c-gold = #f7dd44
+$c-silver = #b0c1cc
+$c-bronze = #eca839
+$c-warning = #dc3f36
+$c-warning--light = #ac3b2a
+$c-warning--lighten = #cd9f98
+$c-success = #4b6c24
+
+$c-link = #2a7fdd
+$c-link-hover = #e97901
+$c-link-visited = #6f57e6
+$c-link-border = rgba(42, 127, 221,0.2)
+
+
+// font
+$font-family = Arial, sans-serif
+$line-height = 1.5
+$fz-base = 14px
+
+/* =====  End of Variable  ====== */
+
+
+html
+  box-sizing border-box
+
+
+*,
+*::before,
+*::after
+  box-sizing inherit
+
+
+.container
+  max-width 1200px
+  margin 0 auto
+  padding-top 100px
+  padding-left 20px
+  padding-right 20px
+
+
+body
+  font-family $font-family
+  font-style normal
+  font-size $fz-base
+  font-weight 400
+  line-height $line-height
+  color #000
+  margin 0
+  background-color $bg
+
+
+.table-wrap
+  overflow-x auto
+
+
+table
+  width 100%
+  min-width 280px
+  margin-bottom 100px
+  border-collapse collapse
+  border-spacing 0
+
+
+thead th
+  text-align left
+  font-weight 700
+
+
+tbody th
+  position relative
+  text-align left
+  padding-right 10px
+  padding-bottom 5px
+  font-weight 400
+  border-bottom 2px solid $c-gray
+
+
+td.empty
+  height 5px
+
+
+tr:hover td
+  border-color $c-gray--light
+  background-color $c-gray--light
+
+
+td.parameters
+  color $c-warning
+
+
+td,th
+  padding 0
+  margin 0
+  vertical-align: top
+  background-color $bg
+
+
+.warning
+  color $c-warning
+
+/* =============================
+=            Place             =
+============================= */
+
+td.place
+  padding-left 18px
+  position relative
+  width 50px
+
+
+td.place.first::before,
+td.place.second::before,
+td.place.third::before
+  content ""
+  position absolute
+  left 0
+  top 4px
+  width 12px
+  height 12px
+  border-radius 50%
+  box-shadow inset 0 0 3px 0px rgba(0,0,0,0.2)
+
+
+td.place.first::before
+  background-color $c-gold
+
+
+td.place.second::before
+  background-color $c-silver
+
+
+td.place.third::before
+  background-color $c-bronze
+
+/* =====  End of Place  ====== */
+
+
+
+
+/* ==============================
+=            Rating             =
+============================== */
+
+td.rating
+  white-space nowrap
+  width 80px
+
+
+td.rating .rating-change
+  position relative
+  padding-left 15px
+
+  &::before
+    content ""
+    position absolute
+    bottom 3px
+    left 6px
+    border-right 3.5px solid transparent
+    border-left 3.5px solid transparent
+
+  &.negative
+    color $c-warning
+
+    &::before
+      border-top 7px solid $c-warning
+
+  &.positive
+    color #4b6c24
+
+    &::before
+      border-bottom 7px solid $c-success
+
+/* =====  End of Rating  ====== */
+
+
+
+td.name
+  padding-right 20px
+  white-space nowrap
+
+  @media $md
+    padding-right 40px
+
+
+thead
+  th:nth-child(2)
+  th:nth-child(3)
+    display none
+    @media (min-width 550px)
+      display table-cell
+
+tbody
+  th:nth-child({$ghost-6}),
+  td:nth-child({$ghost-6})
+    display none
+
+    @media (min-width 550px)
+      display table-cell
+
+
+  th:nth-child({$ghost-5}),
+  td:nth-child({$ghost-5})
+    display none
+
+    @media (min-width 700px)
+      display table-cell
+
+  th:nth-child({$ghost-4}),
+  td:nth-child({$ghost-4})
+    display none
+
+    @media (min-width 750px)
+      display table-cell
+
+
+  th:nth-child({$ghost-3}),
+  td:nth-child({$ghost-3})
+    display none
+
+    @media (min-width 800px)
+      display table-cell
+
+  th:nth-child({$ghost-2}),
+  td:nth-child({$ghost-2})
+    display none
+
+    @media (min-width 850px)
+      display table-cell
+
+
+  th:nth-child({$ghost-1}),
+  td:nth-child({$ghost-1})
+    display none
+
+    @media (min-width 900px)
+      display table-cell
+
+
+@media (min-width 550px)
+  th.offset,
+  td.offset
+    border-right $offset solid $bg
+
+
+@media (min-width 850px)
+  tbody th:nth-child(4)::after
+    content ","
+
+
+@media (min-width 900px)
+  tbody th:nth-child(5)::after
+      content ","
+
+
+/* =============================
+=            Links             =
+============================= */
+
+.link
+  color $c-link
+  text-decoration none
+  border-bottom 1px solid $c-link-border
+  transition all 0.3s
+
+
+.link:hover
+  color $c-link-hover
+
+
+.link:visited
+  color $c-link-visited
+
+/* =====  End of Links  ====== */
+
+
+span.week
+  background-color $c-gray--lighten
+  width 4px
+  display inline-block
+
+  &.warning
+    background-color $c-warning--lighten
+
+
+span.week:last-of-type
+  background-color $c-gray--dark
+
+
+span.week.warning:last-of-type
+  background-color $c-warning--light
+
+
+footer
+  display flex
+  flex-wrap wrap
+  justify-content space-between
+

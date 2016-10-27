@@ -1,0 +1,79 @@
+- var companies = site.data;
+
+doctype html
+
+html(lang="ru")
+
+  head
+    meta(charset="utf-8")
+    title Responsive Data Table
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="style.min.css")
+
+  body
+
+    .container
+      .table-wrap
+        TABLE
+          THEAD
+            TR
+              TH.offset(colspan = 3) В среднем за 12 недель
+              TH(colspan = 6) На прошлой неделе, 11-17 июля
+
+          TBODY
+            TR
+              TH Место
+              TH Пиццерия
+              TH.offset Рейтинг
+              TH Качество
+              TH сервис
+              TH чистота
+              TH 12&nbsp;нед.
+              TH Рейтинг
+              TH Проблемы
+
+            TR
+              TD.empty
+
+            each item in companies
+              -
+                var className;
+                if (item.place === '1') { className = 'first'}
+                else if (item.place === '2') { className = 'second'}
+                else if (item.place === '3') { className = 'third'}
+                else {className = ''}
+
+              //- Сами строки
+              TR
+                TD.place(class = className)= item.place
+                TD.name
+                  if (!item.link)
+                    SPAN= item.name
+                  else
+                    A.link(href= item.link)=  item.name
+                TD.offset(class= parseInt(item.ratingAll) < 85 ? 'warning' : '')= item.ratingAll
+                TD.parameters= item.quality
+                TD.parameters= item.servis
+                TD.parameters= item.purity
+                TD
+                  each val in item.weeks
+                    span.week(
+                      style = 'height: ' + Math.round(parseInt(val) / 7) + 'px',
+                      class = parseInt(val) < 85 ? 'warning' : '',
+                      data-rating = val
+                      )
+
+                TD.rating(class= parseInt(item.rating) < 85 ? 'warning' : '')
+                  SPAN.rating-value= item.rating
+                  if (item.changeRating && item.changeRating !== '0')
+                    if (parseInt(item.changeRating) < 0)
+                      SPAN.rating-change.negative= (item.changeRating).replace('-','')
+                    else
+                      SPAN.rating-change.positive= item.changeRating
+
+                TD= item.problems
+      footer
+        SPAN
+          A(href='index.html').link Таблица результатов в гугль-доке
+        SPAN Для замечаний и предложений:
+          A(href='index.html').link support@dodopizza.com
